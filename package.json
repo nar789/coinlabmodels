@@ -1,0 +1,11 @@
+{
+  "name": "coinlab2",
+  "version": "1.0.0",
+  "description": "coinlab interface",
+  "main": "Coin.js",
+  "scripts": {
+    "test": "node Coin.test.js && node Order.test.js"
+  },
+  "author": "HUME",
+  "license": "MIT"
+}
