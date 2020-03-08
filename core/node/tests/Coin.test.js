@@ -1,4 +1,4 @@
-const coin = require('./Coin')();
+const coin = require('../Coin')();
 
 coin.mName = "testCoin";
 

@@ -1,4 +1,4 @@
-const order = require('./Order')();
+const order = require('../Order')();
 
 const buyingResponse = order.buy(null,2000,30);
 console.log("buying response : " + buyingResponse);
