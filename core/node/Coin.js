@@ -5,6 +5,9 @@
  */
 ;(module.exports = function(){
 
+
+    const exec = require('child_process').execSync;
+
     
     var mName; // Coin's name.
     
@@ -18,9 +21,8 @@
             });
     */
     function getPrice (config, callback) {
-        //todo.
-
-        callback(100);//Just test code. Need to remove this line. 
+        var prc = parseInt(exec('python ../../py/Coin.py'));
+        callback(prc);
     }
 
     return {

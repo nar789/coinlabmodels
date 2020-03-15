@@ -1,0 +1,1 @@
+# All bitmax api python file is putted in this folder
