@@ -123,16 +123,60 @@
                     </rows>
 
                 </rows>
-                <rows>
-
-                </rows>
-                <rows>
-
-                </rows>
             </myPosition>
         </row>
         <row>
-            <limit></limit>
+            <limit>
+                <rows>
+                    <cols>
+                        <label>손실제한 가격</label>
+                        <div>9654 USD</div>
+                        <div>(10.38%)</div>
+                    </cols>
+
+                    <cols>
+                        <label>손실제한 수량</label>
+                        <div>60000 USD</div>
+                        <div>=0.065 XBT</div>
+                    </cols>
+                </rows>
+                <rows>
+
+                    <rows>
+                        현재가가 
+                        <input type=number />
+                        <select>
+                            <option>USD</option>
+                        </select>
+                        <p>이 가격 시 손실제한 주문</p>
+
+                    </rows>
+                    
+                    <rows>
+                        <label>주문수량</label>
+                        <p>손실제한 주문수량</p>
+                        <select>
+                            <option>???</option>
+                        </select>
+                    </rows>
+                    <rows>
+                        <label>주문구분</label>
+                        <radio>
+                            <option>지정가</option>
+                            <option>시장가</option>
+                        </radio>
+                    </rows>
+                    <rows>
+                        <label>주문가격</label>
+                        <input type=number />
+                        <select>
+                            <option>???</option>
+                        </select>
+                    </rows>
+                    <button>손실 제한 시작</button>
+                </rows>
+                
+            </limit>
             <orders></orders>
             <chat></chat>
         </row>
