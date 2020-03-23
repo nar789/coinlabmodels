@@ -33,6 +33,12 @@ class BitMEX(object):
         self.ws = BitMEXWebsocket(endpoint=self.base_url, symbol=self.symbol, api_key=self.api_key,
                                   api_secret=self.api_secret)
 
+    def __del__(self):
+        self.exit()
+
+    def exit(self):
+        self.ws.exit()
+
     def ticker_data(self):
         return self.ws.get_ticker()
 
@@ -49,6 +55,9 @@ class BitMEX(object):
             # 'clOrdID':clientOrderID
         }
         return self._REST_reqeust(path=endpoint, postdict=postdict, verb="POST")
+
+    def position(self):
+        return self.ws.positions(self.symbol)
 
     def _REST_reqeust(self, path, query=None, postdict=None, timeout=None, verb=None,
                       rethrow_error=False, max_retries=None):
