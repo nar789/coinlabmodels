@@ -86,9 +86,14 @@ class BitMEXWebsocket:
         '''Get your margin details.'''
         return self.data['margin'][0]
 
-    def positions(self):
+    def positions(self, symbol):
         '''Get your positions.'''
-        return self.data['position']
+        positions = self.data['position']
+        pos = [p for p in positions if p['symbol'] == symbol]
+        if len(pos) == 0:
+            # No position found; stub it
+            return {'avgCostPrice': 0, 'avgEntryPrice': 0, 'currentQty': 0, 'symbol': symbol}
+        return pos[0]
 
     def market_depth(self):
         '''Get market depth (orderbook). Returns all levels.'''
@@ -98,7 +103,9 @@ class BitMEXWebsocket:
         '''Get all your open orders.'''
         orders = self.data['order']
         # Filter to only open orders and those that we actually placed
-        return [o for o in orders if str(o['clOrdID']).startswith(clOrdIDPrefix) and order_leaves_quantity(o)]
+        return orders
+        # todo alternate under return value when launch service.
+        #return [o for o in orders if str(o['clOrdID']).startswith(clOrdIDPrefix) and order_leaves_quantity(o)]
 
     def recent_trades(self):
         '''Get recent trades.'''

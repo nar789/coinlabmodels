@@ -1,4 +1,7 @@
 # All bitmex api python file is putted in this folder
+import base64
+import uuid
+
 import requests
 from core.py.bitmex.auth import APIKeyAuthWithExpires
 from core.py.bitmex.ws.bitmexWebsocket import BitMEXWebsocket
@@ -33,6 +36,12 @@ class BitMEX(object):
         self.ws = BitMEXWebsocket(endpoint=self.base_url, symbol=self.symbol, api_key=self.api_key,
                                   api_secret=self.api_secret)
 
+    def __del__(self):
+        self.exit()
+
+    def exit(self):
+        self.ws.exit()
+
     def ticker_data(self):
         return self.ws.get_ticker()
 
@@ -41,18 +50,35 @@ class BitMEX(object):
             raise Exception("Price must be positive.")
 
         endpoint = "order"
-        # clientOrderID = self.orderIDPrefix + base64.b64encode(uuid.uuid4().bytes).decode('utf8').rstrip('=\n')
+        clientOrderID = self.orderIDPrefix + base64.b64encode(uuid.uuid4().bytes).decode('utf8').rstrip('=\n')
         postdict = {
             'symbol': self.symbol,
             'orderQty': quantity,
-            'price': price
-            # 'clOrdID':clientOrderID
+            'price': price,
+            'clOrdID':clientOrderID
         }
         return self._REST_reqeust(path=endpoint, postdict=postdict, verb="POST")
 
+    def cancel_order(self, order_id):
+        path = "order"
+        postdict = {
+            'orderID': order_id,
+        }
+        return self._REST_reqeust(path=path, postdict=postdict, verb="DELETE")
+
+    def cancel_all_orders(self):
+        path = "order/all"
+        return self._REST_reqeust(path=path, verb="DELETE")
+
+    def position(self):
+        return self.ws.positions(self.symbol)
+
+    def open_order(self):
+        return self.ws.open_orders(clOrdIDPrefix=self.orderIDPrefix)
+
     def _REST_reqeust(self, path, query=None, postdict=None, timeout=None, verb=None,
                       rethrow_error=False, max_retries=None):
-        url = self.requestUrl + path
+        url = self.base_url + path
         print(url)
 
         if timeout is None:
@@ -85,5 +111,6 @@ class BitMEX(object):
 if __name__ == "__main__":
     print("test")
     bitmex = BitMEX(api_key="mRFAH87bvrET5B7kJ1OQz3JX", api_secret="auENVlHIN-qMGsNQB7ebm7qWGg_riiYh3yhdNPiMPKnb2Jvd")
+    bitmex.place_order(5000, 1)
     response = bitmex.ticker_data()
     print(response)
