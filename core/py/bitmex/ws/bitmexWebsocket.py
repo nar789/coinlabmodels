@@ -103,7 +103,9 @@ class BitMEXWebsocket:
         '''Get all your open orders.'''
         orders = self.data['order']
         # Filter to only open orders and those that we actually placed
-        return [o for o in orders if str(o['clOrdID']).startswith(clOrdIDPrefix) and order_leaves_quantity(o)]
+        return orders
+        # todo alternate under return value when launch service.
+        #return [o for o in orders if str(o['clOrdID']).startswith(clOrdIDPrefix) and order_leaves_quantity(o)]
 
     def recent_trades(self):
         '''Get recent trades.'''
