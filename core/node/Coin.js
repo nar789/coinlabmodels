@@ -21,7 +21,7 @@
             });
     */
     function getPrice (config, callback) {
-        var prc = parseInt(exec('python ../../py/Coin.py'));
+        var prc = parseInt(exec('python ../py/Coin.py'));
         callback(prc);
     }
 

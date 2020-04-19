@@ -2,7 +2,10 @@
 hi hello this is Coinlab interface 
 
 ### todolist
-    1. 200224
+    [200419]
+    python core안되서 docker로 포팅하는게 안정적일 듯
+
+    [200224]
     api_key와 api_secret을 python argument로 입력받을 수 있도록 해주세요.
 
     ```
