@@ -6,7 +6,7 @@ import json
 import logging
 import urllib
 import math
-from core.py.bitmex.util.api_key import generate_nonce, generate_signature
+from bitmex.util.api_key import generate_nonce, generate_signature
 
 
 # Naive implementation of connecting to BitMEX websocket for streaming realtime data.

@@ -3,8 +3,8 @@ import base64
 import uuid
 
 import requests
-from core.py.bitmex.auth import APIKeyAuthWithExpires
-from core.py.bitmex.ws.bitmexWebsocket import BitMEXWebsocket
+from bitmex.auth import APIKeyAuthWithExpires
+from bitmex.ws.bitmexWebsocket import BitMEXWebsocket
 
 
 # https://www.bitmex.com/api/explorer/
