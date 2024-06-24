@@ -13,6 +13,11 @@ hi hello this is Coinlab interface
         print("cancel: " + str(my_order.cancel_all()))
     ```
     print코드들 아래에 샘플 출력 예시를 주석으로 같이 달아주면 읽어들일때 도움될듯~
+    
+### Docker setup
+    1. docker build --tag=[name] .
+    2. docker run -it [name] /bin/bash
+    python3으로 설치되서 실행할땐 python3로 실행.
 
 
 ### Keyword map
