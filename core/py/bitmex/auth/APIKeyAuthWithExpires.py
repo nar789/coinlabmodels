@@ -1,6 +1,6 @@
 from requests.auth import AuthBase
 import time
-from core.py.bitmex.auth.APIKeyAuth import generate_signature
+from bitmex.auth.APIKeyAuth import generate_signature
 
 
 class APIKeyAuthWithExpires(AuthBase):

@@ -1,4 +1,4 @@
-from core.py.bitmex.bitmexApi import BitMEX
+from bitmex.bitmexApi import *
 
 
 # 1.By using bitmaxAPI, get current BTC price.
@@ -16,3 +16,4 @@ class Coin:
 if __name__ == '__main__':
     coin = Coin()
     print("price: " + str(coin.get_price()))
+    # output : "price: 7626.0"
